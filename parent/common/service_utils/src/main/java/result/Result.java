@@ -19,7 +19,7 @@ public class Result<T> {  //用T代表泛类型，因为不知道data到底是�
     public static<T> Result<T> ok(T data) {
         Result<T> result = new Result<>();
         if (data!=null)result.setData(data);
-        result.setCode(200);
+        result.setCode(20000);
         result.setMessage("成功");
         return result;
     }
@@ -28,7 +28,7 @@ public class Result<T> {  //用T代表泛类型，因为不知道data到底是�
     public static<T> Result<T> fail(T data) {
         Result<T> result = new Result<>();
         if (data!=null)result.setData(data);
-        result.setCode(201);
+        result.setCode(20001);
         result.setMessage("失败");
         return result;
     }

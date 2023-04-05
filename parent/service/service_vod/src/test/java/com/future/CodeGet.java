@@ -70,7 +70,7 @@ public class CodeGet {
          * 设置表的名字
          * 需要改的
          */
-        strategy.setInclude("teacher");
+        strategy.setInclude("subject");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 
