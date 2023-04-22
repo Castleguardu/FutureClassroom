@@ -29,7 +29,7 @@ import java.util.List;
 @Api(tags = "讲师管理接口")
 @RestController   //返回json数据
 @RequestMapping(value="/admin/vod/teacher")
-@CrossOrigin   //解决跨越问题
+//@CrossOrigin   //解决跨越问题
 public class TeacherController {
 
     @Autowired

@@ -3,6 +3,7 @@ package com.FutureClassroom.vod.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.futureClassroom.ftcr.model.vod.Course;
+import com.futureClassroom.ftcr.vo.vod.CoursePublishVo;
 
 /**
  * <p>
@@ -14,4 +15,5 @@ import com.futureClassroom.ftcr.model.vod.Course;
  */
 public interface CourseMapper extends BaseMapper<Course> {
 
+    CoursePublishVo selectCoursePublishVoById(Long id);
 }

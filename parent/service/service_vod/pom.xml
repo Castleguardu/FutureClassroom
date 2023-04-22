@@ -49,6 +49,26 @@
             <artifactId>easyexcel</artifactId>
             <version>2.1.1</version>
         </dependency>
+
+        <!--网关依赖-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-gateway</artifactId>-->
+<!--        </dependency>-->
+        <!--不要引入web！不要引入web！不要引入web！gateway中已经包含-->
+
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>vod_api</artifactId>
+            <version>2.1.4</version>
+            <exclusions>
+                <exclusion>
+<!--                    这个是排除掉这个日志，防止跟springboot冲突-->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
 </project>

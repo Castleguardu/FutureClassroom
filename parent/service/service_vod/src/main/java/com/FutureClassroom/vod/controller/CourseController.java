@@ -5,6 +5,7 @@ import com.FutureClassroom.vod.service.CourseService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.futureClassroom.ftcr.model.vod.Course;
 import com.futureClassroom.ftcr.vo.vod.CourseFormVo;
+import com.futureClassroom.ftcr.vo.vod.CoursePublishVo;
 import com.futureClassroom.ftcr.vo.vod.CourseQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +29,7 @@ import java.util.Map;
 @Api(tags = "课程管理接口")
 @RestController
 @RequestMapping("/admin/vod/course")
-@CrossOrigin
+//@CrossOrigin
 public class CourseController {
     @Autowired
     private CourseService courseService;
@@ -67,6 +68,32 @@ public class CourseController {
         courseService.updateCourseById(courseFormVo);
         return Result.ok(null);
     }
+
+    @ApiOperation(value = "根据课程id获取课程发布信息")
+    @GetMapping("getCoursePublishVo/{id}")
+    public Result getCoursePublishVoByid(
+            @ApiParam(value = "课程ID",required = true)
+            @PathVariable Long id) {
+        CoursePublishVo coursePublishVo = courseService.getCoursePublishVo(id);
+        return Result.ok(coursePublishVo);
+    }
+
+    @ApiOperation(value = "根据id发布课程")
+    @PutMapping("publishCourseById/{id}")
+    public Result publishCourseById(
+            @ApiParam(value = "课程ID",required = true)
+            @PathVariable Long id) {
+        boolean result = courseService.publishCourseById(id);
+        return  Result.ok(null);
+    }
+
+    @ApiOperation(value = "删除课程")
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable Long id) {
+        courseService.removeCourseById(id);
+        return Result.ok(null);
+    }
+
 
 }
 

@@ -3,6 +3,7 @@ package com.FutureClassroom.vod.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.futureClassroom.ftcr.model.vod.CourseDescription;
+import com.futureClassroom.ftcr.vo.vod.CourseFormVo;
 
 /**
  * <p>

@@ -2,10 +2,7 @@ package com.FutureClassroom.vod.service.impl;
 
 
 import com.FutureClassroom.vod.mapper.CourseMapper;
-import com.FutureClassroom.vod.service.CourseDescriptionService;
-import com.FutureClassroom.vod.service.CourseService;
-import com.FutureClassroom.vod.service.SubjectService;
-import com.FutureClassroom.vod.service.TeacherService;
+import com.FutureClassroom.vod.service.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -14,12 +11,14 @@ import com.futureClassroom.ftcr.model.vod.CourseDescription;
 import com.futureClassroom.ftcr.model.vod.Subject;
 import com.futureClassroom.ftcr.model.vod.Teacher;
 import com.futureClassroom.ftcr.vo.vod.CourseFormVo;
+import com.futureClassroom.ftcr.vo.vod.CoursePublishVo;
 import com.futureClassroom.ftcr.vo.vod.CourseQueryVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +42,16 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Autowired
     private CourseDescriptionService courseDescriptionService;
+
+    @Autowired
+    private CourseMapper courseMapper;
+
+    @Autowired
+    private VideoService videoService;
+
+    @Autowired
+    private ChapterService chapterService;
+
 
     @Override
     public Map<String, Object> findPage(Page<Course> pageParam, CourseQueryVo courseQueryVo) {
@@ -128,6 +137,32 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         courseDescription.setDescription(courseFormVo.getDescription());
         courseDescription.setId(course.getId());
         courseDescriptionService.updateById(courseDescription);
+    }
+
+    @Override
+    public CoursePublishVo getCoursePublishVo(Long id) {
+        return courseMapper.selectCoursePublishVoById(id);
+    }
+
+    @Override
+    public boolean publishCourseById(Long id) {
+        Course course = new Course();
+        course.setId(id);
+        course.setPublishTime(new Date());
+        course.setStatus(1);   //1表示发布，0表示未发布
+        return this.updateById(course);
+    }
+
+    @Override
+    public void removeCourseById(Long id) {   //之前添加过什么，这个地方就删除掉什么
+//        根据课程id删除小节
+        videoService.removeVideoByCourseId(id);
+//        根据课程id删除章节
+        chapterService.removeChapterByCourseId(id);
+//        根据课程id删除描述
+        courseDescriptionService.removeById(id);
+//        根据课程id删除课程
+        baseMapper.deleteById(id);
     }
 
 

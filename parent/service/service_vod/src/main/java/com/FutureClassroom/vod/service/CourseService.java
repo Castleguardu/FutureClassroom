@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.futureClassroom.ftcr.model.vod.Course;
 import com.futureClassroom.ftcr.vo.vod.CourseFormVo;
+import com.futureClassroom.ftcr.vo.vod.CoursePublishVo;
 import com.futureClassroom.ftcr.vo.vod.CourseQueryVo;
 
 import java.util.Map;
@@ -28,4 +29,10 @@ public interface CourseService extends IService<Course> {
 
 //    获取id后根据id修改课程信息
     void updateCourseById(CourseFormVo courseFormVo);
+
+    CoursePublishVo getCoursePublishVo(Long id);
+
+    boolean publishCourseById(Long id);
+
+    void removeCourseById(Long id);
 }

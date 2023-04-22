@@ -26,7 +26,7 @@ public class CodeGet {
          * 设置输出目录，改成项目路径
          * 需要改的
          */
-        gc.setOutputDir("D:\\study\\java2\\FutureClassroom\\parent\\service\\service_vod"+"/src/main/java");
+        gc.setOutputDir("D:\\study\\java2\\FutureClassroom\\parent\\service\\service_user"+"/src/main/java");
 
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
         /**
@@ -43,7 +43,7 @@ public class CodeGet {
          * 设置数据库
          * 需要改的
          */
-        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_vod");
+        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_user");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("password");
@@ -56,7 +56,7 @@ public class CodeGet {
          * 设置包的名字
          * 需要改的
          */
-        pc.setModuleName("vod"); //模块名
+        pc.setModuleName("user"); //模块名
         pc.setParent("com.FutureClassroom");
         pc.setController("controller");
         pc.setEntity("entity");
@@ -70,7 +70,7 @@ public class CodeGet {
          * 设置表的名字
          * 需要改的
          */
-        strategy.setInclude("chapter","course","course_description","video");
+        strategy.setInclude("user_info");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

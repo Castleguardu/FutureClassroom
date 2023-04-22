@@ -7,15 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description:
- * Param:
- * return:
  * Author: KIKI
  * Date: 2023-04-01
  */
 @RestController
 @RequestMapping("/admin/vod/user")
-@CrossOrigin   //解决跨越问题
+//@CrossOrigin   //解决跨越问题
 public class UserLoginCotroller {
 
     @PostMapping("login")

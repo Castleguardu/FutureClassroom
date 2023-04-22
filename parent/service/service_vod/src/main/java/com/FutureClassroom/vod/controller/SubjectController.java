@@ -26,7 +26,7 @@ import java.util.List;
 @Api(tags = "课程")
 @RestController
 @RequestMapping("/admin/vod/subject")
-@CrossOrigin
+//@CrossOrigin
 public class SubjectController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class SubjectController {
 
 //    查询下一层的课程分类
     @ApiOperation("查询下一层的课程分类")
-    @GetMapping("getChildrenSubject/{id}")
+    @GetMapping("getChildSubject/{id}")
     public Result getChildSubject(@PathVariable Long id) {
         List<Subject> list = subjectService.selectList(id);
         return Result.ok(list);

@@ -2,6 +2,7 @@ package com.FutureClassroom.vod.service.impl;
 
 import com.FutureClassroom.vod.service.VideoService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.futureClassroom.ftcr.model.vod.Chapter;
 import com.FutureClassroom.vod.mapper.ChapterMapper;
 import com.FutureClassroom.vod.service.ChapterService;
@@ -64,5 +65,12 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
             chapterVo.setChildren(videoVoList);
         }
         return chapterVoList;
+    }
+
+    @Override
+    public void removeChapterByCourseId(Long id) {
+        QueryWrapper<Chapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id",id);
+        baseMapper.delete(wrapper);
     }
 }
